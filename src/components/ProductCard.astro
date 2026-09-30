@@ -15,7 +15,7 @@ const { slug, image, name, accroche, price, categorieSlug } = Astro.props;
 
 <article
   data-categorie={categorieSlug}
-  class="flex h-full flex-col gap-4 rounded-[18px] bg-white p-[18px] transition hover:shadow-[0_4px_24px_rgba(0,0,0,0.06)]"
+  class="relative flex h-full flex-col gap-4 rounded-[18px] bg-white p-[18px] transition hover:shadow-[0_4px_24px_rgba(0,0,0,0.06)]"
 >
   <div class="overflow-hidden rounded-xl bg-[var(--color-surface)]">
     <Image
