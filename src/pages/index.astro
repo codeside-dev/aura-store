@@ -1,0 +1,138 @@
+---
+import Vitrine from "../layouts/Vitrine.astro";
+import ProductCard from "../components/ProductCard.astro";
+import { hero, produits } from "../data/produits";
+
+const aLaUne = produits.slice(0, 3);
+
+const arguments_ = [
+  {
+    surtitre: "MATÉRIAUX",
+    titre: "Aluminium recyclé et cuir végétal.",
+    texte: "Chaque pièce est usinée dans un seul bloc, sans vis apparente.",
+  },
+  {
+    surtitre: "RÉPARABLE",
+    titre: "Dix ans de pièces détachées.",
+    texte: "Batterie et coussinets remplaçables par vous, sans outil breveté.",
+  },
+  {
+    surtitre: "CARBONE",
+    titre: "Neutre depuis 2024.",
+    texte:
+      "Fabrication européenne, transport maritime, emballage sans plastique.",
+  },
+];
+---
+
+<Vitrine
+  title="AURA — Le son, réduit à l'essentiel"
+  description="Casques, enceintes et platines haut de gamme. Réduction de bruit adaptative, matériaux recyclés, réparable dix ans."
+>
+  <section
+    class="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-5 px-6 pt-20 lg:px-12"
+  >
+    <p
+      class="text-xs font-semibold tracking-[1.5px] text-[var(--color-accent)]"
+    >
+      NOUVEAU
+    </p>
+    <h1
+      class="max-w-[1000px] text-center text-[40px] font-semibold leading-[1.05] tracking-[-2px] sm:text-[64px]"
+    >
+      Le son, réduit à l'essentiel.
+    </h1>
+    <p class="max-w-[700px] text-center text-lg text-[var(--color-muted)]">
+      AURA One. Réduction de bruit adaptative, 40 heures d'autonomie, 248 grammes.
+    </p>
+    <div class="flex items-center gap-7">
+      <a
+        href="/produit/aura-one"
+        class="rounded-full bg-[var(--color-accent)] px-6 py-[11px] text-[15px] font-medium text-white transition hover:brightness-110"
+      >
+        Acheter
+      </a>
+      <a
+        href="/boutique"
+        class="text-[15px] text-[var(--color-accent)] transition hover:underline"
+      >
+        En savoir plus ›
+      </a>
+    </div>
+
+    <div
+      class="mt-5 flex w-full flex-col items-center rounded-none bg-[var(--color-surface)] p-10"
+    >
+      <img
+        src={hero.src}
+        alt="Casque AURA One posé sur une table"
+        width={hero.width}
+        height={hero.height}
+        class="h-[300px] w-full rounded-[18px] object-cover sm:h-[520px]"
+      />
+    </div>
+  </section>
+
+  <section class="bg-[var(--color-surface)]">
+    <div
+      class="mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-6 py-20 lg:px-12"
+    >
+      <div class="flex items-end justify-between gap-6">
+        <div class="flex flex-col gap-2">
+          <h2 class="text-[32px] font-semibold tracking-[-1px] sm:text-[40px]">
+            À la une.
+          </h2>
+          <p class="text-[17px] text-[var(--color-muted)]">
+            Trois façons d'écouter.
+          </p>
+        </div>
+        <a
+          href="/boutique"
+          class="shrink-0 text-[15px] text-[var(--color-accent)] transition hover:underline"
+        >
+          Voir tout ›
+        </a>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          aLaUne.map((p) => (
+            <ProductCard
+              slug={p.slug}
+              image={p.image}
+              name={p.nom}
+              accroche={p.accroche}
+              price={p.prix}
+              categorieSlug={p.categorieSlug}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-12 px-6 py-24 lg:px-12"
+  >
+    <h2
+      class="max-w-[900px] text-center text-[32px] font-semibold tracking-[-1px] sm:text-[40px]"
+    >
+      Conçu pour durer.
+    </h2>
+    <div class="grid w-full gap-12 md:grid-cols-3">
+      {
+        arguments_.map((a) => (
+          <div class="flex flex-col gap-3">
+            <p class="text-xs font-semibold tracking-[1.2px] text-[var(--color-accent)]">
+              {a.surtitre}
+            </p>
+            <h3 class="text-[19px] font-semibold">{a.titre}</h3>
+            <p class="text-[15px] leading-relaxed text-[var(--color-muted)]">
+              {a.texte}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Vitrine>

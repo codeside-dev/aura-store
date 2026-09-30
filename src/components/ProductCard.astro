@@ -1,0 +1,52 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  slug: string;
+  image: ImageMetadata;
+  name: string;
+  accroche?: string;
+  price: string;
+  categorieSlug: string;
+}
+
+const { slug, image, name, accroche, price, categorieSlug } = Astro.props;
+---
+
+<article
+  data-categorie={categorieSlug}
+  class="flex h-full flex-col gap-4 rounded-[18px] bg-white p-[18px] transition hover:shadow-[0_4px_24px_rgba(0,0,0,0.06)]"
+>
+  <div class="overflow-hidden rounded-xl bg-[var(--color-surface)]">
+    <Image
+      src={image}
+      alt={name}
+      widths={[420, 640, 840]}
+      sizes="(min-width: 1024px) 400px, (min-width: 640px) 45vw, 90vw"
+      class="h-[240px] w-full object-cover"
+      loading="lazy"
+    />
+  </div>
+
+  <div class="flex flex-1 flex-col gap-1.5">
+    <h3 class="text-[19px] font-semibold tracking-[-0.4px]">
+      <a
+        href={`/produit/${slug}`}
+        class="after:absolute after:inset-0 after:content-[''] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+      >
+        {name}
+      </a>
+    </h3>
+    {accroche && <p class="text-sm text-[var(--color-muted)]">{accroche}</p>}
+  </div>
+
+  <div class="flex items-center justify-between">
+    <span class="text-[15px] text-[var(--color-muted)]">{price}</span>
+    <button
+      type="button"
+      class="relative z-10 rounded-full bg-[var(--color-accent)] px-4 py-2 text-[13px] font-medium text-white transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+    >
+      Ajouter
+    </button>
+  </div>
+</article>

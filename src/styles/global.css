@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+/*
+ * Jetons de conception repris du fichier .pen d'AURA.
+ * Valeurs simples dans :root ; les piles de polices vont dans @layer base,
+ * jamais dans une variable CSS (les virgules cassent la valeur).
+ */
+:root {
+  --color-ink: #1d1d1f;
+  --color-muted: #6e6e73;
+  --color-accent: #0071e3;
+  --color-surface: #f5f5f7;
+  --color-line: #d2d2d7;
+  --color-placeholder: #e8e8ed;
+}
+
+@layer base {
+  html,
+  body {
+    height: 100%;
+  }
+
+  /* Ce design n'utilise qu'une seule famille. La poser sur le body évite de
+     répéter une classe de police sur chaque nœud de texte. */
+  body {
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+  }
+}

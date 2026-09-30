@@ -1,0 +1,114 @@
+---
+import Vitrine from "../layouts/Vitrine.astro";
+import ProductCard from "../components/ProductCard.astro";
+import { filtres, produits } from "../data/produits";
+
+const classeFiltre =
+  "rounded-full border border-[var(--color-line)] bg-white px-4 py-2 text-[13px] text-[var(--color-ink)] transition hover:border-[var(--color-ink)] aria-pressed:border-transparent aria-pressed:bg-[var(--color-ink)] aria-pressed:font-semibold aria-pressed:text-white";
+---
+
+<Vitrine
+  title="Boutique — AURA"
+  description="Tous les produits AURA : casques, enceintes et platines. Réduction de bruit, matériaux recyclés, réparables dix ans."
+>
+  <section
+    class="mx-auto flex w-full max-w-[1440px] flex-col gap-3.5 px-6 pt-14 pb-7 lg:px-12"
+  >
+    <nav aria-label="Fil d'Ariane">
+      <ol class="flex items-center gap-2 text-xs text-[var(--color-muted)]">
+        <li><a href="/" class="transition hover:text-[var(--color-ink)]">Accueil</a></li>
+        <li aria-hidden="true">›</li>
+        <li aria-current="page" class="text-[var(--color-ink)]">Boutique</li>
+      </ol>
+    </nav>
+    <h1 class="text-[36px] font-semibold tracking-[-1.5px] sm:text-[48px]">
+      Tous les produits.
+    </h1>
+    <p class="text-[15px] text-[var(--color-muted)]" data-compteur aria-live="polite">
+      {produits.length} produits
+    </p>
+  </section>
+
+  <section
+    class="mx-auto flex w-full max-w-[1440px] flex-col items-start justify-between gap-4 px-6 pb-7 lg:flex-row lg:items-center lg:px-12"
+  >
+    <div
+      class="flex flex-wrap gap-2.5"
+      role="group"
+      aria-label="Filtrer les produits par catégorie"
+    >
+      {
+        filtres.map((f, i) => (
+          <button
+            type="button"
+            class={classeFiltre}
+            data-filtre={f.slug}
+            aria-pressed={i === 0 ? "true" : "false"}
+          >
+            {f.label}
+          </button>
+        ))
+      }
+    </div>
+    <p class="text-[13px] text-[var(--color-muted)]">Trier : En vedette ⌄</p>
+  </section>
+
+  <section class="bg-[var(--color-surface)]">
+    <div class="mx-auto w-full max-w-[1440px] px-6 py-10 lg:px-12">
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3" data-grille>
+        {
+          produits.map((p) => (
+            <ProductCard
+              slug={p.slug}
+              image={p.image}
+              name={p.nom}
+              price={p.prix}
+              categorieSlug={p.categorieSlug}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const boutons = document.querySelectorAll<HTMLButtonElement>("[data-filtre]");
+    const cartes = document.querySelectorAll<HTMLElement>("[data-categorie]");
+    const compteur = document.querySelector<HTMLElement>("[data-compteur]");
+    const total = cartes.length;
+
+    function appliquer(cible: string) {
+      let visibles = 0;
+
+      boutons.forEach((b) =>
+        b.setAttribute("aria-pressed", String(b.dataset.filtre === cible)),
+      );
+
+      cartes.forEach((carte) => {
+        const correspond = cible === "tout" || carte.dataset.categorie === cible;
+        carte.hidden = !correspond;
+        if (correspond) visibles += 1;
+      });
+
+      if (compteur) {
+        compteur.textContent =
+          visibles === total
+            ? `${total} produits`
+            : `${visibles} produit${visibles > 1 ? "s" : ""} sur ${total}`;
+      }
+    }
+
+    boutons.forEach((bouton) =>
+      bouton.addEventListener("click", () =>
+        appliquer(bouton.dataset.filtre ?? "tout"),
+      ),
+    );
+
+    // Les liens du menu arrivent avec ?categorie=… : on preselectionne le filtre
+    // pour que « Casques » ouvre vraiment les casques.
+    const demandee = new URLSearchParams(location.search).get("categorie");
+    const filtreExiste = (slug: string) =>
+      Array.from(boutons).some((b) => b.dataset.filtre === slug);
+    if (demandee && filtreExiste(demandee)) appliquer(demandee);
+  </script>
+</Vitrine>

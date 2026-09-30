@@ -1,0 +1,147 @@
+---
+import Vitrine from "../../layouts/Vitrine.astro";
+import ProductCard from "../../components/ProductCard.astro";
+import { produits, produitParSlug } from "../../data/produits";
+
+export function getStaticPaths() {
+  return produits.map((produit) => ({
+    params: { slug: produit.slug },
+    props: { produit },
+  }));
+}
+
+const { produit } = Astro.props;
+
+const apparentes = produits.filter((p) => p.slug !== produit.slug).slice(0, 3);
+
+/* Le design prevoit trois vignettes sous l'image principale. Faute d'autres
+   prises de vue, ce sont trois cadrages de la meme photo. Les classes sont
+   ecrites en clair pour que Tailwind les genere. */
+const vignettes = ["object-center", "object-left", "object-right"];
+const finitions = [
+  { nom: "Noir", classe: "bg-[#1D1D1F]" },
+  { nom: "Argent", classe: "bg-[#B9B9BE]" },
+  { nom: "Noyer", classe: "bg-[#5A4633]" },
+];
+---
+
+<Vitrine
+  title={`${produit.nom} — AURA`}
+  description={produit.description}
+>
+  <div class="mx-auto w-full max-w-[1440px] px-6 pt-10 lg:px-12">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="flex flex-wrap items-center gap-2 text-xs text-[var(--color-muted)]">
+        <li><a href="/" class="transition hover:text-[var(--color-ink)]">Accueil</a></li>
+        <li aria-hidden="true">›</li>
+        <li>
+          <a
+            href={`/boutique?categorie=${produit.categorieSlug}`}
+            class="transition hover:text-[var(--color-ink)]"
+          >
+            {produit.categorie}
+          </a>
+        </li>
+        <li aria-hidden="true">›</li>
+        <li aria-current="page" class="text-[var(--color-ink)]">{produit.nom}</li>
+      </ol>
+    </nav>
+  </div>
+
+  <section
+    class="mx-auto grid w-full max-w-[1440px] items-start gap-16 px-6 py-10 lg:grid-cols-2 lg:px-12"
+  >
+    <div class="flex flex-col gap-4 rounded-[18px] bg-[var(--color-surface)] p-10">
+      <img
+        src={produit.image.src}
+        alt={produit.nom}
+        width={produit.image.width}
+        height={produit.image.height}
+        class="h-[340px] w-full rounded-xl object-cover sm:h-[560px]"
+      />
+      <div class="flex gap-3">
+        {
+          vignettes.map((classe) => (
+            <img
+              src={produit.image.src}
+              alt=""
+              width={produit.image.width}
+              height={produit.image.height}
+              class={`size-24 rounded-lg object-cover ${classe}`}
+            />
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-5">
+      <h1 class="text-[36px] font-semibold tracking-[-1.2px] sm:text-[44px]">
+        {produit.nom}
+      </h1>
+      <p class="text-2xl">{produit.prix}</p>
+      <p class="max-w-[560px] text-base text-[var(--color-muted)]">
+        {produit.description}
+      </p>
+
+      <div class="flex flex-col gap-3 pt-1">
+        <p class="text-[13px] font-semibold">Finition</p>
+        <div class="flex gap-3">
+          {
+            finitions.map((teinte) => (
+              <button
+                type="button"
+                aria-label={teinte.nom}
+                class={`size-[26px] rounded-full ring-1 ring-[var(--color-line)] ring-offset-2 transition hover:ring-[var(--color-ink)] ${teinte.classe}`}
+              />
+            ))
+          }
+        </div>
+      </div>
+
+      <button
+        type="button"
+        class="self-start rounded-full bg-[var(--color-accent)] px-[30px] py-3.5 text-base font-medium text-white transition hover:brightness-110"
+      >
+        Ajouter au panier
+      </button>
+
+      <p class="text-[13px] text-[var(--color-muted)]">
+        Livraison offerte · Retour gratuit sous 30 jours
+      </p>
+
+      <dl class="flex flex-col border-t border-[var(--color-line)] pt-5">
+        {
+          produit.specifications.map((s) => (
+            <div class="flex items-center justify-between py-2.5">
+              <dt class="text-sm text-[var(--color-muted)]">{s.label}</dt>
+              <dd class="text-sm">{s.valeur}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <section class="bg-[var(--color-surface)]">
+    <div
+      class="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-6 py-16 lg:px-12"
+    >
+      <h2 class="text-[28px] font-semibold tracking-[-0.8px] sm:text-[32px]">
+        À compléter avec.
+      </h2>
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          apparentes.map((p) => (
+            <ProductCard
+              slug={p.slug}
+              image={p.image}
+              name={p.nom}
+              price={p.prix}
+              categorieSlug={p.categorieSlug}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Vitrine>

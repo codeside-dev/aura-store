@@ -1,0 +1,109 @@
+---
+import Base from "./Base.astro";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+
+const nav = [
+  { label: "Boutique", href: "/boutique" },
+  { label: "Casques", href: "/boutique?categorie=casques" },
+  { label: "Enceintes", href: "/boutique?categorie=enceintes" },
+  { label: "Platines", href: "/boutique?categorie=platines" },
+  { label: "Support", href: "#" },
+];
+---
+
+<Base title={title} description={description}>
+  <header
+    class="border-b border-[var(--color-line)] bg-[var(--color-surface)]"
+  >
+    <div
+      class="mx-auto flex h-12 w-full max-w-[1440px] items-center justify-between px-6 lg:px-12"
+    >
+      <a
+        href="/"
+        class="text-[15px] font-semibold tracking-[3px] text-[var(--color-ink)]"
+        >AURA</a
+      >
+
+      <nav class="hidden items-center gap-[30px] md:flex" aria-label="Principale">
+        {
+          nav.map((lien) => (
+            <a
+              href={lien.href}
+              class="text-xs text-[var(--color-ink)] transition hover:text-[var(--color-accent)]"
+            >
+              {lien.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="flex items-center gap-5">
+        <a href="/boutique" aria-label="Rechercher" class="transition hover:opacity-60">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+        </a>
+        <a href="/boutique" aria-label="Panier" class="transition hover:opacity-60">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+            <path d="M3 6h18"></path>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="bg-[var(--color-surface)]">
+    <div
+      class="mx-auto flex w-full max-w-[1440px] flex-col items-center justify-between gap-4 px-6 py-8 sm:flex-row lg:px-12"
+    >
+      <p class="text-[13px] text-[var(--color-muted)]">
+        © 2026 AURA. Tous droits réservés.
+      </p>
+      <div class="flex gap-6">
+        {
+          ["Docs", "Plugins", "GitHub", "Discord"].map((lien) => (
+            <a
+              href="#"
+              class="text-[13px] text-[var(--color-muted)] transition hover:text-[var(--color-ink)]"
+            >
+              {lien}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </footer>
+</Base>

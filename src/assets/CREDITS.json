@@ -1,0 +1,72 @@
+[
+  {
+    "slot": "hero",
+    "query": "headphones on table",
+    "title": "Headphones on Table",
+    "creator": "anonyme",
+    "license": "CC0 1.0",
+    "source": "https://www.rawpixel.com/image/5969959/headphones-table",
+    "via": "Openverse",
+    "file": "hero.png"
+  },
+  {
+    "slot": "aura-one",
+    "query": "over ear headphones black",
+    "title": "black-and-white shot headphones wooden surface",
+    "creator": "anonyme",
+    "license": "CC0 1.0",
+    "source": "https://www.rawpixel.com/image/3301986/free-photo-image-headphones-music-background",
+    "via": "Openverse",
+    "file": "aura-one.png"
+  },
+  {
+    "slot": "aura-buds",
+    "query": "wireless earbuds charging case",
+    "title": "File:Fifth-generation AirPods in their charging case.jpg",
+    "creator": "Cheeseburgahhh",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Fifth-generation_AirPods_in_their_charging_case.jpg",
+    "via": "Wikimedia Commons",
+    "file": "aura-buds.png"
+  },
+  {
+    "slot": "aura-sound",
+    "query": "bookshelf speaker",
+    "title": "File:Gale Silver Monitor Speaker Grille Front.jpg",
+    "creator": "Wikimedia Commons contributor",
+    "license": "CC BY 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Gale_Silver_Monitor_Speaker_Grille_Front.jpg",
+    "file": "aura-sound.png",
+    "via": "Wikimedia Commons"
+  },
+  {
+    "slot": "aura-studio",
+    "query": "loudspeaker monitor",
+    "title": "The Lance",
+    "creator": "Phil Gradwell",
+    "license": "BY 2.0",
+    "source": "https://www.flickr.com/photos/73228447@N02/23675580354",
+    "via": "Openverse",
+    "file": "aura-studio.png"
+  },
+  {
+    "slot": "aura-vinyl",
+    "query": "turntable vinyl record player",
+    "title": "Vinyl player",
+    "creator": "Fabio Sola Penna",
+    "license": "BY 2.0",
+    "source": "https://www.flickr.com/photos/21929919@N00/6439602217",
+    "via": "Openverse",
+    "file": "aura-vinyl.png"
+  },
+  {
+    "slot": "aura-mini",
+    "query": "portable speaker",
+    "title": "File:Beats pill (28591413428).jpg",
+    "creator": "unmatched value",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Beats_pill_(28591413428).jpg",
+    "via": "Wikimedia Commons",
+    "file": "aura-mini.png"
+  }
+]
