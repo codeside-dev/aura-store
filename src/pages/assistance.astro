@@ -1,0 +1,73 @@
+---
+import Vitrine from "../layouts/Vitrine.astro";
+
+const sections = [
+  {
+    id: "livraison",
+    titre: "Livraison",
+    paragraphes: [
+      "Expédition sous 24 heures ouvrées depuis notre atelier de Lyon. Livraison offerte en France métropolitaine dès 100 € d'achat, 9 € en dessous.",
+      "Retrait possible au showroom, 14 rue de la Charité à Lyon 2e, du mardi au samedi. Vous êtes prévenu par courriel dès que la commande est prête.",
+    ],
+  },
+  {
+    id: "retours",
+    titre: "Retours",
+    paragraphes: [
+      "Trente jours pour changer d'avis, à compter de la réception. Le produit doit être complet ; un casque essayé reste accepté.",
+      "Le retour se fait par un point relais, aux frais d'AURA. Le remboursement intervient sous cinq jours ouvrés après réception.",
+    ],
+  },
+  {
+    id: "garantie",
+    titre: "Garantie",
+    paragraphes: [
+      "Deux ans de garantie légale de conformité, portée à cinq ans sur les casques et les enceintes.",
+      "Dix ans de disponibilité des pièces détachées. Batterie et coussinets se remplacent sans outil breveté.",
+    ],
+  },
+];
+---
+
+<Vitrine
+  title="Assistance — AURA"
+  description="Livraison, retours et garantie du matériel audio AURA."
+>
+  <div class="mx-auto w-full max-w-[820px] px-6 py-16 lg:px-12">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="flex items-center gap-2 text-xs text-[var(--color-muted)]">
+        <li><a href="/" class="transition hover:text-[var(--color-ink)]">Accueil</a></li>
+        <li aria-hidden="true">›</li>
+        <li aria-current="page" class="text-[var(--color-ink)]">Assistance</li>
+      </ol>
+    </nav>
+
+    <h1 class="mt-4 text-[36px] font-semibold tracking-[-1.2px] sm:text-[44px]">
+      Assistance
+    </h1>
+    <p class="mt-4 text-base text-[var(--color-muted)]">
+      Livraison, retours et garantie. Pour toute autre question,
+      écrivez-nous : le support répond sous un jour ouvré.
+    </p>
+
+    <p
+      class="mt-8 rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] p-4 text-[13px] text-[var(--color-muted)]"
+    >
+      Contenu de démonstration. Ces conditions sont plausibles mais inventées :
+      à remplacer par vos engagements réels avant toute mise en ligne.
+    </p>
+
+    <div class="mt-12 flex flex-col gap-12">
+      {
+        sections.map((s) => (
+          <section id={s.id} class="flex scroll-mt-20 flex-col gap-3">
+            <h2 class="text-[24px] font-semibold">{s.titre}</h2>
+            {s.paragraphes.map((p) => (
+              <p class="text-base leading-relaxed text-[var(--color-muted)]">{p}</p>
+            ))}
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</Vitrine>

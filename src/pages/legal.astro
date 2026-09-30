@@ -1,0 +1,73 @@
+---
+import Vitrine from "../layouts/Vitrine.astro";
+
+const sections = [
+  {
+    id: "conditions",
+    titre: "Conditions de vente",
+    paragraphes: [
+      "Vente de matériel audio neuf aux particuliers et aux professionnels. Prix affichés en euros, TVA incluse.",
+      "La commande vaut acceptation des présentes conditions. Une facture est émise pour chaque expédition.",
+    ],
+  },
+  {
+    id: "confidentialite",
+    titre: "Confidentialité",
+    paragraphes: [
+      "Aucune donnée n'est revendue ni transmise à des tiers en dehors du transporteur et de l'établissement bancaire.",
+      "Les informations de commande sont conservées dix ans, durée légale de conservation des pièces comptables.",
+    ],
+  },
+  {
+    id: "cookies",
+    titre: "Cookies",
+    paragraphes: [
+      "Ce site n'utilise aucun cookie de mesure d'audience ni de publicité.",
+      "Le panier s'appuie sur un stockage local du navigateur, effaçable à tout moment depuis ses réglages.",
+    ],
+  },
+];
+---
+
+<Vitrine
+  title="Légal — AURA"
+  description="Conditions de vente, confidentialité et cookies du site AURA."
+>
+  <div class="mx-auto w-full max-w-[820px] px-6 py-16 lg:px-12">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="flex items-center gap-2 text-xs text-[var(--color-muted)]">
+        <li><a href="/" class="transition hover:text-[var(--color-ink)]">Accueil</a></li>
+        <li aria-hidden="true">›</li>
+        <li aria-current="page" class="text-[var(--color-ink)]">Légal</li>
+      </ol>
+    </nav>
+
+    <h1 class="mt-4 text-[36px] font-semibold tracking-[-1.2px] sm:text-[44px]">
+      Légal
+    </h1>
+    <p class="mt-4 text-base text-[var(--color-muted)]">
+      Conditions de vente, traitement des données et cookies.
+    </p>
+
+    <p
+      class="mt-8 rounded-xl border border-[#E5C07B] bg-[#FDF6E7] p-4 text-[13px] text-[#7A5B1E]"
+    >
+      Contenu de démonstration, à ne pas mettre en ligne tel quel. Des mentions
+      légales engagent leur éditeur : faites-les rédiger ou vérifier, en y
+      ajoutant votre raison sociale, votre adresse et votre hébergeur.
+    </p>
+
+    <div class="mt-12 flex flex-col gap-12">
+      {
+        sections.map((s) => (
+          <section id={s.id} class="flex scroll-mt-20 flex-col gap-3">
+            <h2 class="text-[24px] font-semibold">{s.titre}</h2>
+            {s.paragraphes.map((p) => (
+              <p class="text-base leading-relaxed text-[var(--color-muted)]">{p}</p>
+            ))}
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</Vitrine>

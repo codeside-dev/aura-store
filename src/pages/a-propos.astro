@@ -1,0 +1,72 @@
+---
+import Vitrine from "../layouts/Vitrine.astro";
+
+const sections = [
+  {
+    id: "a-propos",
+    titre: "À propos",
+    paragraphes: [
+      "AURA conçoit et assemble du matériel audio à Lyon depuis 2019. Douze personnes, un atelier, et la conviction qu'un bon produit est un produit qui se répare.",
+      "Nous dessinons peu de modèles et les gardons longtemps : six références, pas une par saison.",
+    ],
+  },
+  {
+    id: "environnement",
+    titre: "Environnement",
+    paragraphes: [
+      "Aluminium recyclé, cuir végétal, emballage sans plastique. Fabrication européenne et transport maritime plutôt qu'aérien.",
+      "Nos émissions sont neutres depuis 2024, après réduction puis compensation du reste.",
+    ],
+  },
+  {
+    id: "presse",
+    titre: "Presse",
+    paragraphes: [
+      "Dossier de presse, visuels haute définition et prêts de matériel sur demande.",
+      "Écrire à presse@aura.example en précisant votre média et votre échéance.",
+    ],
+  },
+];
+---
+
+<Vitrine
+  title="Entreprise — AURA"
+  description="AURA, concepteur de matériel audio à Lyon depuis 2019 : fabrication, environnement et contact presse."
+>
+  <div class="mx-auto w-full max-w-[820px] px-6 py-16 lg:px-12">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="flex items-center gap-2 text-xs text-[var(--color-muted)]">
+        <li><a href="/" class="transition hover:text-[var(--color-ink)]">Accueil</a></li>
+        <li aria-hidden="true">›</li>
+        <li aria-current="page" class="text-[var(--color-ink)]">Entreprise</li>
+      </ol>
+    </nav>
+
+    <h1 class="mt-4 text-[36px] font-semibold tracking-[-1.2px] sm:text-[44px]">
+      Entreprise
+    </h1>
+    <p class="mt-4 text-base text-[var(--color-muted)]">
+      Qui nous sommes, comment nous fabriquons, et comment nous contacter.
+    </p>
+
+    <p
+      class="mt-8 rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] p-4 text-[13px] text-[var(--color-muted)]"
+    >
+      Contenu de démonstration. Ces informations sont inventées : à remplacer
+      par les vôtres, notamment l'adresse de presse.
+    </p>
+
+    <div class="mt-12 flex flex-col gap-12">
+      {
+        sections.map((s) => (
+          <section id={s.id} class="flex scroll-mt-20 flex-col gap-3">
+            <h2 class="text-[24px] font-semibold">{s.titre}</h2>
+            {s.paragraphes.map((p) => (
+              <p class="text-base leading-relaxed text-[var(--color-muted)]">{p}</p>
+            ))}
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</Vitrine>

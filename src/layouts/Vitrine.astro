@@ -15,11 +15,11 @@ const nav = [
   { label: "Casques", href: "/boutique?categorie=casques" },
   { label: "Enceintes", href: "/boutique?categorie=enceintes" },
   { label: "Platines", href: "/boutique?categorie=platines" },
-  { label: "Support", href: null },
+  { label: "Support", href: "/assistance" },
 ];
 
-/* Colonnes du pied de page, telles que dans le .pen. Les entrees sans href
-   n'ont pas encore de page : texte simple, pas de lien mort. */
+/* Colonnes du pied de page, telles que dans le .pen. Chaque entree mene a la
+   section correspondante de la page d'information. */
 const colonnes = [
   {
     titre: "Boutique",
@@ -33,25 +33,25 @@ const colonnes = [
   {
     titre: "Assistance",
     liens: [
-      { label: "Livraison", href: null },
-      { label: "Retours", href: null },
-      { label: "Garantie", href: null },
+      { label: "Livraison", href: "/assistance#livraison" },
+      { label: "Retours", href: "/assistance#retours" },
+      { label: "Garantie", href: "/assistance#garantie" },
     ],
   },
   {
     titre: "Entreprise",
     liens: [
-      { label: "À propos", href: null },
-      { label: "Environnement", href: null },
-      { label: "Presse", href: null },
+      { label: "À propos", href: "/a-propos#a-propos" },
+      { label: "Environnement", href: "/a-propos#environnement" },
+      { label: "Presse", href: "/a-propos#presse" },
     ],
   },
   {
     titre: "Légal",
     liens: [
-      { label: "Conditions", href: null },
-      { label: "Confidentialité", href: null },
-      { label: "Cookies", href: null },
+      { label: "Conditions", href: "/legal#conditions" },
+      { label: "Confidentialité", href: "/legal#confidentialite" },
+      { label: "Cookies", href: "/legal#cookies" },
     ],
   },
 ];
